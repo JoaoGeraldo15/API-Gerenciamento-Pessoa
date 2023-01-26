@@ -8,6 +8,8 @@ import com.api.pessoa.domain.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @AllArgsConstructor
@@ -21,5 +23,10 @@ public class PersonServiceImpl implements PersonService {
     public PersonDTO create(PersonDTO personDTO) {
         Person personSaved = personRepository.save(personMapper.toEntity(personDTO));
         return personMapper.toDTO(personSaved);
+    }
+
+    @Override
+    public List<PersonDTO> list() {
+        return personMapper.listToDTO(personRepository.findAll());
     }
 }
