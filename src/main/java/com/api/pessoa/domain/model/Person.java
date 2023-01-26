@@ -1,7 +1,8 @@
-package com.api.pessoa.domain;
+package com.api.pessoa.domain.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,7 +24,7 @@ public class Person {
     @Column(nullable = false)
     private String name;
 
-    @NotEmpty
+    @NotNull
     @Column(nullable = false)
     private Date birthDate;
 
