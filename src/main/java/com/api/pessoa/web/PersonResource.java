@@ -38,4 +38,10 @@ public class PersonResource {
         return ResponseEntity.ok(personService.update(idPerson, personDTO));
     }
 
+    @DeleteMapping("{idPerson}")
+    public ResponseEntity<Void> deletePerson(@PathVariable Long idPerson) {
+        personService.delete(idPerson);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -43,6 +43,12 @@ public class PersonServiceImpl implements PersonService {
         return save(personDTO);
     }
 
+    @Override
+    public void delete(Long idPerson) {
+        Person person = findPersonOrThrowException(idPerson);
+        personRepository.delete(person);
+    }
+
     private Person findPersonOrThrowException(Long idPerson) {
         return personRepository.findById(idPerson).orElseThrow(() -> new EntityNotFound(String.format("Person with id %d not found ", idPerson)));
     }
