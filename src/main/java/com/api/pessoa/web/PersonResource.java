@@ -28,4 +28,9 @@ public class PersonResource {
         return ResponseEntity.status(HttpStatus.OK).body(personsList);
     }
 
+    @GetMapping("/{idPerson}")
+    public ResponseEntity<PersonDTO> getPersonById(@PathVariable Long idPerson) {
+        return ResponseEntity.ok(personService.getPersonById(idPerson));
+    }
+
 }

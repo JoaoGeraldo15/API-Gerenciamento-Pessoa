@@ -10,4 +10,6 @@ public interface PersonService {
     public PersonDTO create(PersonDTO personDTO);
 
     List<PersonDTO> list();
+
+    PersonDTO getPersonById(Long idPerson);
 }

@@ -5,6 +5,7 @@ import com.api.pessoa.domain.model.PersonMapper;
 import com.api.pessoa.domain.model.dto.PersonDTO;
 import com.api.pessoa.domain.repository.PersonRepository;
 import com.api.pessoa.domain.service.PersonService;
+import com.api.pessoa.domain.service.exeception.EntityNotFound;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,14 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<PersonDTO> list() {
         return personMapper.listToDTO(personRepository.findAll());
+    }
+
+    @Override
+    public PersonDTO getPersonById(Long idPerson) {
+        return personMapper.toDTO(findPersonOrThrowException(idPerson));
+    }
+
+    private Person findPersonOrThrowException(Long idPerson) {
+        return personRepository.findById(idPerson).orElseThrow(() -> new EntityNotFound(String.format("Person with id %d not found ", idPerson)));
     }
 }
