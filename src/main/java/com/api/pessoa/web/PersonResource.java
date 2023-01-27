@@ -18,7 +18,7 @@ public class PersonResource {
 
     @PostMapping
     public ResponseEntity<PersonDTO> create(@RequestBody @Valid PersonDTO personDTO) {
-        PersonDTO personCreated = personService.create(personDTO);
+        PersonDTO personCreated = personService.save(personDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(personCreated);
     }
 
@@ -31,6 +31,11 @@ public class PersonResource {
     @GetMapping("/{idPerson}")
     public ResponseEntity<PersonDTO> getPersonById(@PathVariable Long idPerson) {
         return ResponseEntity.ok(personService.getPersonById(idPerson));
+    }
+
+    @PutMapping("{idPerson}")
+    public ResponseEntity<PersonDTO> updatePerson(@PathVariable Long idPerson, @RequestBody @Valid PersonDTO personDTO) {
+        return ResponseEntity.ok(personService.update(idPerson, personDTO));
     }
 
 }

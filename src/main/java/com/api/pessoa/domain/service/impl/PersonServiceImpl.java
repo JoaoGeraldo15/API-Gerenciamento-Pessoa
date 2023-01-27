@@ -21,7 +21,7 @@ public class PersonServiceImpl implements PersonService {
     private PersonMapper personMapper;
 
     @Override
-    public PersonDTO create(PersonDTO personDTO) {
+    public PersonDTO save(PersonDTO personDTO) {
         Person personSaved = personRepository.save(personMapper.toEntity(personDTO));
         return personMapper.toDTO(personSaved);
     }
@@ -34,6 +34,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonDTO getPersonById(Long idPerson) {
         return personMapper.toDTO(findPersonOrThrowException(idPerson));
+    }
+
+    @Override
+    public PersonDTO update(Long idPerson, PersonDTO personDTO) {
+        findPersonOrThrowException(idPerson);
+        personDTO.setId(idPerson);
+        return save(personDTO);
     }
 
     private Person findPersonOrThrowException(Long idPerson) {
