@@ -37,4 +37,17 @@ public class AddressResource {
     public ResponseEntity<List<AddressDTO>> listPersonAddress(@PathVariable Long personId) {
         return ResponseEntity.ok(addressService.listPersonAddress(personId));
     }
+
+    /**
+     * Endpoint para atualizar o endereço principal de uma Person. Se o addressId pertencer a personId, será atualizado
+     * como sendo addressId o principal. Caso não exista ou pertença é lançado uma exception EntityNotFound informando
+     * que o endereço não foi encontrado e status code será 404
+     * @param addressId
+     * @param personId
+     * @return AddressDTO
+     */
+    @PutMapping("/update-main")
+    public ResponseEntity<AddressDTO> updateMainAddress(@RequestParam Long addressId, @RequestParam Long personId) {
+        return ResponseEntity.ok(addressService.updateMainAddress(addressId, personId));
+    }
 }

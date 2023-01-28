@@ -22,4 +22,14 @@ public interface AddressService {
      * @return List<AddressDTO>
      */
     List<AddressDTO> listPersonAddress(Long personId);
+
+    /**
+     * Permite atualizar o endereço principal de personId para o addressId. Caso esse endereço não pertença a personId
+     * é lançado uma exception EntityNotFound. Mas se o endereço existir e pertencer a personId, é atualizado o endereço
+     * principal como sendo addressId no lugar do antigo endereço principal.
+     * @param addressId
+     * @param personId
+     * @return AddressDTO
+     */
+    AddressDTO updateMainAddress(Long addressId, Long personId);
 }

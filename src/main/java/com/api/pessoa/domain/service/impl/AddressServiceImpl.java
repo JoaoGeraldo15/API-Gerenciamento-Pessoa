@@ -7,6 +7,7 @@ import com.api.pessoa.domain.model.mapper.AddressMapper;
 import com.api.pessoa.domain.repository.AddressRepository;
 import com.api.pessoa.domain.service.AddressService;
 import com.api.pessoa.domain.service.PersonService;
+import com.api.pessoa.domain.service.exeception.EntityNotFound;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class AddressServiceImpl implements AddressService {
         PersonDTO personDTO = personService.getPersonById(addressDTO.getPersonId());
         addressDTO.setPersonId(personDTO.getId());
         if (addressDTO.getIsMainAddress()) {
-            validateMainAddress(addressDTO);
+            validateMainAddress(addressDTO.getPersonId());
         }
 
         Address addressSaved = addressRepository.save(addressMapper.toEntity(addressDTO));
@@ -40,8 +41,21 @@ public class AddressServiceImpl implements AddressService {
         return addressMapper.toDTO(addressRepository.findAllByPersonId(personId));
     }
 
-    private void validateMainAddress(AddressDTO addressDTO) {
-        Optional<Address> mainAddress = addressRepository.findByPerson_IdAndAndIsMainAddress(addressDTO.getPersonId(), Boolean.TRUE);
+    @Override
+    public AddressDTO updateMainAddress(Long addressId, Long personId) {
+
+        Address newMainAddress = addressRepository.findByPerson_IdAndId(personId, addressId)
+                .orElseThrow(() -> new EntityNotFound(String.format("Address with id %d not found ", addressId)));
+
+        validateMainAddress(personId);
+
+        newMainAddress.setIsMainAddress(Boolean.TRUE);
+        return addressMapper.toDTO(addressRepository.save(newMainAddress));
+    }
+
+
+    private void validateMainAddress(Long personId) {
+        Optional<Address> mainAddress = addressRepository.findByPerson_IdAndAndIsMainAddress(personId, Boolean.TRUE);
         if (mainAddress.isPresent()) {
             Address oldAddress = mainAddress.get();
             oldAddress.setIsMainAddress(Boolean.FALSE);
