@@ -1,0 +1,15 @@
+insert into PERSON (ID, NAME, BIRTH_DATE) values (1, 'Isabelle Geindre', '2008-01-17');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (2, 'Sloan Neylon', '2013-11-23');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (3, 'Greg Willoughby', '1997-06-08');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (4, 'Lancelot Troyes', '2005-08-03');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (5, 'Kinna Laraway', '2018-06-01');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (6, 'Harmon Codman', '2014-04-23');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (7, 'Randy Houlison', '2014-07-23');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (8, 'Meggie Millions', '2005-07-29');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (9, 'Felic Boutwell', '1996-11-09');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (10, 'Linnell Lipson', '2016-08-30');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (11, 'Culver Doey', '2019-07-13');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (12, 'Anthiathia Stiebler', '2014-03-23');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (13, 'Shannah Wigglesworth', '2005-05-23');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (14, 'Berkley Gronou', '2017-07-24');
+insert into PERSON (ID, NAME, BIRTH_DATE) values (15, 'Wenona Weldrake', '1996-12-23');
