@@ -10,6 +10,7 @@ import com.api.pessoa.domain.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,11 @@ public class AddressServiceImpl implements AddressService {
 
         Address addressSaved = addressRepository.save(addressMapper.toEntity(addressDTO));
         return addressMapper.toDTO(addressSaved);
+    }
+
+    @Override
+    public List<AddressDTO> listPersonAddress(Long personId) {
+        return addressMapper.toDTO(addressRepository.findAllByPersonId(personId));
     }
 
     private void validateMainAddress(AddressDTO addressDTO) {

@@ -3,6 +3,8 @@ package com.api.pessoa.domain.service;
 import com.api.pessoa.domain.model.dto.AddressDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface AddressService {
 
@@ -13,4 +15,11 @@ public interface AddressService {
      * @return addressDTO
      */
     public AddressDTO save(AddressDTO addressDTO);
+
+    /**
+     * Lista os endereços de uma pessoa de acordo com o id informado
+     * @param personId
+     * @return List<AddressDTO>
+     */
+    List<AddressDTO> listPersonAddress(Long personId);
 }
