@@ -1,9 +1,11 @@
-package com.api.pessoa.domain;
+package com.api.pessoa.domain.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
@@ -15,26 +17,26 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Address City is required and can't be empty")
     @Column(nullable = false)
     private String city;
 
-    @NotEmpty
+    @NotEmpty(message = "Address Street is required and can't be empty")
     @Column(nullable = false)
     private String street;
 
-    @NotEmpty
+    @NotEmpty(message = "Address Zipcode is required and can't be empty")
     @Column(nullable = false)
     private String zipcode;
 
-    @NotEmpty
+    @NotEmpty(message = "Address Number is required and can't be empty")
     @Column(nullable = false)
     private String number;
 
     @Column(nullable = false)
     private Boolean isMainAddress = Boolean.FALSE;
 
-    @ManyToOne
-    @JoinColumn(name = "personId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 }
