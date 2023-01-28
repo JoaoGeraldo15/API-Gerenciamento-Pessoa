@@ -1,11 +1,11 @@
 package com.api.pessoa.domain.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,11 +20,11 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Name is required and can't be empty")
     @Column(nullable = false)
     private String name;
 
-    @NotNull
+    @NotNull(message = "birthday is required and can't be null")
     @Column(nullable = false)
     private Date birthDate;
 
