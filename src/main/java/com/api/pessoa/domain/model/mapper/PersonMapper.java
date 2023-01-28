@@ -1,5 +1,6 @@
-package com.api.pessoa.domain.model;
+package com.api.pessoa.domain.model.mapper;
 
+import com.api.pessoa.domain.model.Person;
 import com.api.pessoa.domain.model.dto.PersonDTO;
 import org.mapstruct.Mapper;
 

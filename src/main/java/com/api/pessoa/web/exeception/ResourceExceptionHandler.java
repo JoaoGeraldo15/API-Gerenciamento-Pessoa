@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class ResourceExceptionHandler {
 
     @ExceptionHandler(EntityNotFound.class)
-    public ResponseEntity<StandardError> entidadeNaoEncontrada(EntityNotFound ex, HttpServletRequest request) {
+    public ResponseEntity<StandardError> EntityNotFoundHandler(EntityNotFound ex, HttpServletRequest request) {
         StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
