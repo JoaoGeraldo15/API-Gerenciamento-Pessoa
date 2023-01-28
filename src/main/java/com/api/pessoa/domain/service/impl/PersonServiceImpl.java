@@ -28,7 +28,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<PersonDTO> list() {
-        return personMapper.listToDTO(personRepository.findAll());
+        return personMapper.toDTO(personRepository.findAll());
     }
 
     @Override

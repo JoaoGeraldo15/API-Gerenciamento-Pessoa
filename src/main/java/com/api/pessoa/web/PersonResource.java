@@ -2,12 +2,12 @@ package com.api.pessoa.web;
 
 import com.api.pessoa.domain.model.dto.PersonDTO;
 import com.api.pessoa.domain.service.PersonService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
