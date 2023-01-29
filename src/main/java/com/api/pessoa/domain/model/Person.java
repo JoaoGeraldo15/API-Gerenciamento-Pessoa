@@ -1,11 +1,14 @@
 package com.api.pessoa.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +17,8 @@ import java.util.List;
 @Entity
 @Table(name = "person")
 @EqualsAndHashCode(of = {"id"})
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
     @Id
@@ -26,8 +31,14 @@ public class Person {
 
     @NotNull(message = "birthday is required and can't be null")
     @Column(nullable = false)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @OneToMany(mappedBy = "person")
     private List<Address> address = new ArrayList<>();
+
+    public Person(String name, LocalDate birthDay, ArrayList<Address> address) {
+        this.name = name;
+        this.birthDate = birthDay;
+        this.address = address;
+    }
 }
