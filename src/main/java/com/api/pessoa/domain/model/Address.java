@@ -1,16 +1,18 @@
 package com.api.pessoa.domain.model;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
+@Builder
 @Table(name = "endereco")
 @EqualsAndHashCode(of = {"id"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
 
     @Id
@@ -35,6 +37,14 @@ public class Address {
 
     @Column(nullable = false)
     private Boolean isMainAddress = Boolean.FALSE;
+
+    public Address(String city, String street, String zipcode, String number, Boolean isMainAddress) {
+        this.city = city;
+        this.street = street;
+        this.zipcode = zipcode;
+        this.number = number;
+        this.isMainAddress = isMainAddress;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", nullable = false)

@@ -1,19 +1,25 @@
 package com.api.pessoa.domain.model.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddressDTO {
 
     private Long id;
+
+    public AddressDTO(String city, String street, String zipcode, String number, Boolean isMainAddress) {
+        this.city = city;
+        this.street = street;
+        this.zipcode = zipcode;
+        this.number = number;
+        this.isMainAddress = isMainAddress;
+    }
 
     @NotEmpty(message = "Address City is required and can't be empty")
     private String city;
@@ -30,4 +36,6 @@ public class AddressDTO {
     private Boolean isMainAddress = Boolean.FALSE;
 
     private Long personId;
+
+
 }
