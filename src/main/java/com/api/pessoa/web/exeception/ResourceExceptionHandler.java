@@ -4,6 +4,7 @@ import com.api.pessoa.domain.service.exeception.EntityNotFound;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -28,4 +29,11 @@ public class ResourceExceptionHandler {
         StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), errorMessage, request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<StandardError> methodArgumentNotValidException(MethodArgumentNotValidException ex, HttpServletRequest request) {
+        StandardError error = new StandardError(LocalDateTime.now(), HttpStatus.UNPROCESSABLE_ENTITY.value(), ex.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(error);
+    }
+
 }
