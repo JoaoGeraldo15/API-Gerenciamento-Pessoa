@@ -12,7 +12,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 
 import static com.api.pessoa.domain.commom.PersonConstants.*;
@@ -70,7 +69,6 @@ class PersonResourceTest {
         when(personService.list()).thenReturn(PERSONS_ID);
 
         String contentAsString = mockMvc.perform(get(URL_PERSON)
-                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
@@ -85,7 +83,7 @@ class PersonResourceTest {
         when(personService.getPersonById(anyLong())).thenReturn(PERSON_ID);
 
         String contentAsString = mockMvc.perform(get(URL_PERSON + "/" + PERSON_ID.getId())
-                .contentType(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
 

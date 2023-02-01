@@ -10,6 +10,7 @@ import static com.api.pessoa.domain.commom.PersonConstants.PERSON_ENTITY_ID;
 
 public class AddressConstants {
 
+    public final static String URL_ADDRESS = "/api/address";
     public final static Address ADDRESS_ENTITY = new Address("City Land", "Street for", "6489233", "259", Boolean.FALSE);
 
     public final static AddressDTO ADDRESS = new AddressDTO("City Land", "Street for", "6489233", "259", Boolean.FALSE);
@@ -20,5 +21,9 @@ public class AddressConstants {
 
     public final static List<Address> ADDRESSES_ENTITY = new ArrayList<Address>() {{
         add(ADDRESS_ENTITY_ID);
+    }};
+
+    public final static List<AddressDTO> ADDRESSES = new ArrayList<AddressDTO>() {{
+        add(ADDRESS_ID);
     }};
 }

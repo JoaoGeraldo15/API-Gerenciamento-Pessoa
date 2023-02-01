@@ -3,10 +3,12 @@ package com.api.pessoa.domain.model.dto;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode(of = {"id"})
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddressDTO {
@@ -35,6 +37,7 @@ public class AddressDTO {
 
     private Boolean isMainAddress = Boolean.FALSE;
 
+    @NotNull(message = "PersonId is required and can't be null")
     private Long personId;
 
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,8 +25,9 @@ public class AddressResource {
      * @return addressDTO
      */
     @PostMapping
-    public ResponseEntity<AddressDTO> create(@RequestBody AddressDTO addressDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(addressService.save(addressDTO));
+    public ResponseEntity<AddressDTO> create(@RequestBody @Valid AddressDTO addressDTO) {
+        AddressDTO addressSaved = addressService.save(addressDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addressSaved);
     }
 
     /**
