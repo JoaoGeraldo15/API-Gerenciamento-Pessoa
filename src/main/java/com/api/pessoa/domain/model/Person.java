@@ -1,9 +1,6 @@
 package com.api.pessoa.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -14,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@Builder
 @Entity
 @Table(name = "person")
 @EqualsAndHashCode(of = {"id"})
